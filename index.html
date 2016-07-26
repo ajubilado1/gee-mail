@@ -1,18 +1,83 @@
+<!--Date: 08/26/2016
+	Name: Artemio P Jubilado jr (AJ)
+	Project Objective: project is an individuals inbox email account, a lot of online references
+	were used in accomplishing this project.  -->
+<!DOCTYPE html>
 <html>
-	<head>
-		<script src="js/mail-generator.js"></script>
-		<link href="css/style.css" rel="stylesheet" media="screen">
+    <head>
+        <script src="js/mail-generator.js"></script>
+        <link href="css/style.css" rel="stylesheet" media="screen">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+		
+        <script id="emailTemplate" type="text/x-jquery-tmpl">
+            <tr>
+                <td class="date"> ${date} </td>
+                <td class="sender"> ${sender} </td>
+                <td class="subject"> ${subject} </td>
+                <td class="body"> ${body} </td>
+            </tr>
+        </script>
+		
     <script>
+	
       window.onload = function(){
-        // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
-        // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
-        
-      };
-    </script>
-	</head>
+            $("document").ready(function(){
+                window.geemails = [];
+                loadGeeMails(); //function places data into window.geemails array
+                console.log(window.geemails);
+
+
+			$("#emailTemplate").tmpl(window.geemails).appendTo("#emailContainer");
+
+	
+	
+	
+			<!--6.  Set a recurring function to via the JavaScript setInterval function that will call our existing getNewMessage function that we have created for you that will return a newly created message with the same properties as your previous messages.-->
+	
+	
+	
+                setInterval(function(){
+                    var myMessage = getNewMessage(); //function generates new message data
+                    window.geemails.push(myMessage);
+                    console.log(window.geemails);   
+                  $("#emailTemplate").tmpl(window.geemails).appendTo("emailContainer");
+                }, 9000);
+                });
+        };
+	</script>	
+	
+	
+	
+   </head>
+		<!--2.  Create a basic page layout via HTML/CSS with a top header section with the name of the application and a content section where you will display the messages.-->
+		
+		<!--When your page loads, via JavaScript access our prepopulated data stored in the window.geemails variable. Each object in the array has the following properties:
+
+				date - The date message was sent
+				subject - The subject of the message
+				sender - The sender of the message
+				body - The GeeMail message content-->
 	<body>
-		<div class="container" id="main">
-			Build Me!
+		<div id = "wrapper1">
+			<div id="header">
+				<h1>Inbox</h1>
+					
+			</div>
+				
+			<div id="content">
+			<table id="table" border="4" width="930"> 
+			 
+				<tr bgcolor="#cccccc">
+					<th class="date">Date</th><br>
+					<th class="sender">Sender</th><br>
+					<th class="subject">Subject</th><br>
+					<th class="body">Message</th><br>
+				
+				<tbody id="emailContainer">    
+					</tbody>
+			</table>
+			</div>				
 		</div>
-	</body>
+    </body>
 </html>
