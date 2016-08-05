@@ -1,15 +1,16 @@
-<style>
 #body{
+
 		background-image:;
-		background-color: ;
+		background-color:  #0000ff;
 		background-position: bottom; 
 		background-repeat: repeat-x;
         padding: 0 20px;
 	
 }	
 #wrapper1{
-	width: 70%;
+	width: 80%;
 	float:center;
+	background-color:  #ffffff;
 	margin-left: auto ;
 	margin-right: auto;
 	-webkit-box-shadow: 5px 5px 5px #1e1e1e;
@@ -38,6 +39,7 @@
 	float:left;
 	width: 15%;
 	display:  block ;
+	padding: 10px;
 }
 #nav ul { list-style-type: none; 
 			     padding: 10px;
@@ -55,12 +57,12 @@
 }
 #sidebar{
 	float: right;
-	width: 25%;
+	width: 15%;
 	background-color:#ffffff;
 	Padding: 10px;
 }
 #footer{
-	#footer { font-size: .60em;
+	 font-size: .60em;
         font-style: italic;
         text-align: center;
         padding-top: 20px;
@@ -92,12 +94,30 @@
 	background-color: white;
 	z-index:1002;
 }
-h3{
-	 color: red;
+#h3{
+  color: red;
 }
+
+
 .body{
-	  display:none;
-  	color: blue;
-  	font-size:20px;
+  display:none;
+  color: blue;
+  font-size:20px;
 }
-</style>
+span.pointer {
+    cursor: pointer;
+}
+
+.sender{
+  font-size: 30px;
+  color: blue
+}
+
+.body{
+  display: none;
+}
+
+.body.show{
+  display: inline;
+  background-color: orange;
+}
