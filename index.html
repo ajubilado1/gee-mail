@@ -1,59 +1,59 @@
-<!--Date: 07/28/2016 (final)
-<!--Name: Artemio P Jubilado jr (AJ)
+<!--Date: 08/04/2016-->
+<!--Name: Artemio P Jubilado jr (AJ)-->
 <!--Project Objective: project is an individuals inbox email account, a lot of online references
 <!--were used in accomplishing this project.  -->
-
 
 <!DOCTYPE html>
 <html>
     <head>
+	<style>
+		body { 
+		background-color: #0000ff;
+		}	
+	</style>
+	
         <script src="js/mail-generator.js"></script>
         <link href="css/style.css" rel="stylesheet" media="screen">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 		
-       	<script id="emailTemplate" type="text/x-jquery-tmpl">
+		<script id="emailTemplate" type="text/x-jquery-tmpl">
             <tr>
                 <td class="date"> ${date} </td>
                 <td class="sender"> ${sender} </td>
                 <td class="subject"> ${subject} </td>
-				<td class="body"> ${body} </td>
-				
-            </tr>
-        </script>
-	
+				<td class="body"> ${body} </td> 				
+			</tr>
+		</script>
 		
-    <script>
+		<script>
 	
       window.onload = function(){
-            $("document").ready(function(){
+           
+		   $("document").ready(function(){
                 window.geemails = [];
                 loadGeeMails(); //function places data into window.geemails array
                 console.log(window.geemails);
 				updateInbox();
 
-			$("#emailTemplate").tmpl(window.geemails).appendTo("#emailContainer");
-			
-			
 				<!--6.  Set a recurring function to via the JavaScript setInterval function that will call our existing getNewMessage function that we have created for you that will return a newly created message with the same properties as your previous messages.-->
 	
                 setInterval(function(){
                     var myMessage = getNewMessage(); //function generates new message data
                     window.geemails.push(myMessage);
                     console.log(window.geemails);   
-                  $("#emailTemplate").tmpl(window.geemails).appendTo("emailContainer");
+                 $("#emailTemplate").tmpl(window.geemails).appendTo("emailContainer");
 				  updateInbox()
                 },  5000);
 				
-	
 				<!--5.  You must show an inbox count somewhere on the page to show the current number of messages in your inbox.-->
 				
 				function updateInbox() {
 				var inboxCount = document.getElementById("inbox");
 				inboxCount.innerHTML = "inbox: " + window.geemails.length;
+				$("#emailTemplate").tmpl(window.geemails).appendTo("#emailContainer");
 				
-				}
-						
+				}						
 				<!--splash screen...greeting user on form load-->
 				$.fn.center = function () {
 						this.css("position","absolute");
@@ -74,7 +74,8 @@
 						setTimeout(function(){    
 						$("#overlay").fadeOut();
 						}, 5000);
-	
+						
+
 					//toggles e-mail body message
 					var elements = document.getElementsByClassName('sender'); 
 					for(var i =0; i < elements.length; i++){
@@ -91,7 +92,7 @@
 							if(element.style.display === "none"){
 							element.style.display = "block";
 							}else{
-							element.style.display = "none";
+							element.style.display = "none";		
 					}  
 					}
 				}			
@@ -111,31 +112,63 @@
 
 	<body>
 		<div id = "wrapper1">
+		
 			<div id="header">
 				<h1>Inbox</h1>	
 			</div>
 			
 			<!--5.  You must show an inbox count somewhere on the page to show the current number of messages in your inbox.-->
 			 <div id="inbox"></div>
-			 
+		
+			<!--nav-->
+			<div id="nav">
+					<h3>Navigation</h3>
+				<ul>
+					<li><a href="">Placeholder</a></li>
+					<li><a href="">Placeholder</a></li>
+					<li><a href="">Placeholder</a></li>
+					<li><a href="">Placeholder</a></li>
+					<li><a href="">Placeholder</a></li>
+				</ul>
+			</div>
+		
+			<!--sidebar-->
+			<div id="sidebar">
+				<h3>Sidebar</h3>
+			</div>
 			
 			<!--email table-->
 			<div id="content">
 				<div class="message">
-					<table id="table" border="4" width="930"> 
+					<table id="table" border="4" width=""> 
 						<tr bgcolor="#cccccc">
 							<th class="date">Date</th><br>
 							<th class="sender">Sender</th><br>
 							<th class="subject">Subject</th><br>
 							<div class="body">
 								<th class="body">Message</th><br>
-							</div>							
+							</div>	
 							<tbody id="emailContainer">		
-							</tbody>
+							</tbody> 
 					</table>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+				<div id="footer">
+					Footer
+				<!--Created by:  | last updated:  | 
+				all rights reserved -->
+			</div>
 				</div>
-			</div>  	
-	
+			</div> 	
+			
+		</div>
+			
 			<!--splash screen text-->
 			<div id="overlay">
 				<div id="overlay-content">Welcome to your inbox...</div>
@@ -144,8 +177,9 @@
 			<br>
 			<br>
 			<br>
-		</div>
 	</body>
 </html>
-  
+
+	
+ 
  
