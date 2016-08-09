@@ -1,4 +1,4 @@
-<!--Date: 08/04/2016-->
+<!--Date: 08/08/2016-->
 <!--Name: Artemio P Jubilado jr (AJ)-->
 <!--Project Objective: project is an individuals inbox email account, a lot of online references
 <!--were used in accomplishing this project.  -->
@@ -8,6 +8,7 @@
     <head>
 	<style>
 		body { 
+		
 		background-color: #0000ff;
 		}	
 	</style>
@@ -17,43 +18,55 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 		
-		<script id="emailTemplate" type="text/x-jquery-tmpl">
+		
+		
+		
+		<script id="emailTemplate1" type="text/x-jquery-tmpl">
             <tr>
                 <td class="date"> ${date} </td>
                 <td class="sender"> ${sender} </td>
-                <td class="subject"> ${subject} </td>
-				<td class="body"> ${body} </td> 				
+				<td class="subject"> ${subject} </td>
+				<td class="body"> ${body} </td>   	
 			</tr>
-		</script>
+		</script> 
 		
-		<script>
+		
+		
+		
+		
+		
+		<script>  <!--start of 1st-->
 	
-      window.onload = function(){
+		window.onload = function(){
            
 		   $("document").ready(function(){
                 window.geemails = [];
                 loadGeeMails(); //function places data into window.geemails array
                 console.log(window.geemails);
 				updateInbox();
+				
+					$("#emailTemplate1").tmpl(window.geemails).appendTo("#emailContainer");
+			
 
-				<!--6.  Set a recurring function to via the JavaScript setInterval function that will call our existing getNewMessage function that we have created for you that will return a newly created message with the same properties as your previous messages.-->
-	
+					
+
+				<!--6.  Set a recurring function to via the JavaScript setInterval function that will call our existing getNewMessage function that we have created for you that will return a newly created message with the same properties as your previous messages.-->	
                 setInterval(function(){
-                    var myMessage = getNewMessage(); //function generates new message data
+                   var myMessage = getNewMessage(); //function generates new message data
                     window.geemails.push(myMessage);
-                    console.log(window.geemails);   
-                 $("#emailTemplate").tmpl(window.geemails).appendTo("emailContainer");
-				  updateInbox()
+                    console.log(window.geemails);   				
+					updateInbox();
                 },  5000);
 				
 				<!--5.  You must show an inbox count somewhere on the page to show the current number of messages in your inbox.-->
 				
 				function updateInbox() {
+				var myMessage = getNewMessage();
 				var inboxCount = document.getElementById("inbox");
 				inboxCount.innerHTML = "inbox: " + window.geemails.length;
-				$("#emailTemplate").tmpl(window.geemails).appendTo("#emailContainer");
-				
-				}						
+				$("#emailTemplate1").tmpl(myMessage).appendTo("#emailContainer");
+		
+				}	
 				<!--splash screen...greeting user on form load-->
 				$.fn.center = function () {
 						this.css("position","absolute");
@@ -73,14 +86,14 @@
 
 						setTimeout(function(){    
 						$("#overlay").fadeOut();
-						}, 5000);
+						}, 1000);
 						
 
 					//toggles e-mail body message
 					var elements = document.getElementsByClassName('sender'); 
 					for(var i =0; i < elements.length; i++){
 					var element = elements[i];
-  
+					
 						element.addEventListener("click", handleClick);
 						}
 
@@ -88,17 +101,19 @@
 					function handleClick(){  
 					var elements = document.getElementsByClassName('body');
 						for(var i= 0; i < elements.length; i++){
-							var element = elements[i];
+						var element = elements[i];
 							if(element.style.display === "none"){
 							element.style.display = "block";
 							}else{
-							element.style.display = "none";		
+						element.style.display = "none";		
 					}  
 					}
 				}			
                 });
         };
-	</script>	
+	</script>	<!--end of 1st-->
+	
+	
 	
    </head>
 		<!--2.  Create a basic page layout via HTML/CSS with a top header section with the name of the application and a content section where you will display the messages.-->
@@ -137,20 +152,26 @@
 				<h3>Sidebar</h3>
 			</div>
 			
+			
+		
 			<!--email table-->
+			
 			<div id="content">
 				<div class="message">
 					<table id="table" border="4" width=""> 
 						<tr bgcolor="#cccccc">
 							<th class="date">Date</th><br>
-							<th class="sender">Sender</th><br>
+							<th class="sender">Sender</a></th><br>
 							<th class="subject">Subject</th><br>
+							
 							<div class="body">
-								<th class="body">Message</th><br>
-							</div>	
+								<th class="body">Message</th><br> 
+								 
+							</div>
 							<tbody id="emailContainer">		
 							</tbody> 
 					</table>
+				
 					<br>
 					<br>
 					<br>
@@ -179,7 +200,5 @@
 			<br>
 	</body>
 </html>
-
-	
  
  
